@@ -2,8 +2,10 @@ from crewai import agents
 from langchain_google_genai import ChatGoogleGenerativeAI as chatai
 import os
 from dotenv import load_dotenv
+from tools import tool
 
 load_dotenv()
+
 llm = chatai(
   model = "gemini-1.5-flash",
   verbose = True,
@@ -28,7 +30,7 @@ news_researcher = agents(
 )
 
 #Creating an agent to write the above news
-news_writer = Agent(
+news_writer = agents(
   role='Writer',
   goal='Narrate compelling tech stories about {topic}',
   verbose=True,
@@ -41,5 +43,6 @@ news_writer = Agent(
   tools=[tool],
   llm=llm,
   allow_delegation=False
+)
 
 
