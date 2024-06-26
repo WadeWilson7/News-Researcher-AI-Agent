@@ -1,4 +1,4 @@
-from crewai import agents
+from crewai import Agent
 from langchain_google_genai import ChatGoogleGenerativeAI as chatai
 import os
 from dotenv import load_dotenv
@@ -16,7 +16,7 @@ llm = chatai(
 
 #Creating a news ai researcher
 
-news_researcher = agents(
+news_researcher = Agent(
   role = "Senior News Researcher",
   goal = "Unravel ground breaking truth about {topic}",
   memory = True,
@@ -30,7 +30,7 @@ news_researcher = agents(
 )
 
 #Creating an agent to write the above news
-news_writer = agents(
+news_writer = Agent(
   role='Writer',
   goal='Narrate compelling tech stories about {topic}',
   verbose=True,
